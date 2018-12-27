@@ -1,11 +1,18 @@
 package com.TCard.demo.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import com.TCard.demo.Model.MemberAccount;
-import com.TCard.demo.Service.MemberService;
+import com.TCard.demo.Dao.MemberRepository;
+import com.TCard.demo.Model.MemberAccountJPA;
 
 @Controller  //不是@RestController
 public class MemberController {
@@ -25,17 +32,57 @@ public class MemberController {
 //    	memberService.addMember(memberAccount);
 //        return "新增會員成功";
 //    }
+//	//透過 @RequestMapping 指定從/會被對應到此addMemberPage()方法
+//	@Autowired
+//	MemberAccount memberAccount;
+//	
+//	@Autowired
+//	MemberService memberService;
+//	@GetMapping("/addMemberPage")
+//    public String addMemberPage(){
+////    	memberAccount = new MemberAccount();
+////    	memberService.addMember(memberAccount);
+//
+//        return "addMemberPage";
+//    }
 	//透過 @RequestMapping 指定從/會被對應到此addMemberPage()方法
+//	@Autowired
+//	MemberAccount memberAccount;
+//	
+//	@Autowired
+//	MemberService memberService;
+//	
 	@Autowired
-	MemberAccount memberAccount;
+	MemberRepository memberRepository;
 	
 	@Autowired
-	MemberService memberService;
+	DataSource dataSource;
+	 
+
 	@GetMapping("/addMemberPage")
     public String addMemberPage(){
-//    	memberAccount = new MemberAccount();
-//    	memberService.addMember(memberAccount);
 
+		List<MemberAccountJPA> memberAccountJPA= new ArrayList<MemberAccountJPA>();
+		memberAccountJPA = memberRepository.findAll();
+
+		for(int i=0;i<memberAccountJPA.size();i++){
+			System.out.println(memberAccountJPA.get(i).getId());
+		}
         return "addMemberPage";
     }
+	
+	
+	@GetMapping("/login")
+    public String login(@ModelAttribute MemberAccountJPA memberAccountJPA){
+
+        return "login";
+    }
+	
+	@PostMapping("/doLogin")
+    public String doLogin(@ModelAttribute MemberAccountJPA memberAccountJPA){
+		System.out.println(memberRepository.findCheckMemberAccount(memberAccountJPA.getEmail(), memberAccountJPA.getPassword()));
+
+        return "welcome";
+    }
+	
 }
