@@ -1,13 +1,13 @@
 package com.TCard.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.TCard.demo.Model.MemberAccount;
 import com.TCard.demo.Service.MemberService;
 
-@RestController
+@Controller  //不是@RestController
 public class MemberController {
 //	//透過 @RequestMapping 指定從/會被對應到此hello()方法
 //	@Autowired
