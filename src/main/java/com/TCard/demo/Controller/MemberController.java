@@ -3,7 +3,6 @@ package com.TCard.demo.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.TCard.demo.Dao.MemberRepository;
-import com.TCard.demo.Model.MemberAccount;
 import com.TCard.demo.Model.MemberAccountJPA;
 
 @Controller  //不是@RestController
