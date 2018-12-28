@@ -99,13 +99,5 @@ public class MemberController {
 		}
 
     }
-	
-//	public String doLogin(@ModelAttribute MemberAccountJPA memberAccountJPA,HttpSession session){
-//		session.setAttribute("uid", memberAccount); //將memberAccount object存入session命名為uid
-//		if(session.getAttribute("uid")!=null){
-//		  	session.removeAttribute(uid);
-//		}
-//	}
-	
-	
+
 }
