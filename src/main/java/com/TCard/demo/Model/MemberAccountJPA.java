@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class MemberAccountJPA {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private int id;
+  private long id;
   @Column(name="EMAIL")
   private String email;
   @Column(name="CELLPHONE")
@@ -22,7 +22,7 @@ public class MemberAccountJPA {
   
   
 
-  public int getId() {
+  public long getId() {
 	return id;
   }
   public void setId(int id) {
