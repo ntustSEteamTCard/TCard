@@ -3,6 +3,7 @@ package com.TCard.demo.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.TCard.demo.Dao.MemberRepository;
+import com.TCard.demo.Model.MemberAccount;
 import com.TCard.demo.Model.MemberAccountJPA;
 
 @Controller  //不是@RestController
@@ -79,10 +81,22 @@ public class MemberController {
     }
 	
 	@PostMapping("/doLogin")
-    public String doLogin(@ModelAttribute MemberAccountJPA memberAccountJPA){
-		System.out.println(memberRepository.findCheckMemberAccount(memberAccountJPA.getEmail(), memberAccountJPA.getPassword()));
+    public String doLogin(@ModelAttribute MemberAccountJPA memberAccountJPA,HttpSession session){
+		String email = memberAccountJPA.getEmail();
+		String password = memberAccountJPA.getPassword();
+		List<MemberAccountJPA> MemberAccountJPAList = new ArrayList<MemberAccountJPA>();
+		MemberAccountJPAList = memberRepository.findCheckMemberAccount(email, password);
+		MemberAccount memberAccount = new  MemberAccount();
+		memberAccount.setPassword(password);
+		memberAccount.setEmail(email);;
 
-        return "welcome";
+		if(MemberAccountJPAList.size()==0){
+			return "login";
+		}
+		else{
+			session.setAttribute("uid", memberAccount);
+	        return "welcome";
+		}
+
     }
-	
 }
