@@ -39,13 +39,13 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">請輸入登入信箱及密碼</h3>
+                        <h3 class="panel-title">請輸入登入學號及密碼</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" id="loginForm" method="post" enctype="multipart/form-data" th:action="@{/doLogin}" th:object="${memberAccountJPA}">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" id="email" th:field="*{email}" type="email" autofocus=""/>
+                                    <input class="form-control" placeholder="Student ID" id="email" th:field="*{email}" type="email" autofocus=""/>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" id="password" th:field="*{password}" type="password" />
@@ -56,7 +56,8 @@
 <!--                                     </label> -->
 <!--                                 </div> -->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a onclick="checkLogin()" class="btn btn-lg btn-success btn-block">登錄</a>
+                                <a onclick="checkLogin()" class="btn btn-lg btn-success btn-block">登入</a>
+                                 <a href="/addMemberPage" class="btn btn-lg btn-default btn-block">註冊</a>
                             </fieldset>
                         </form>
                     </div>
