@@ -42,7 +42,7 @@ public class MemberApiController {
 		Map map = new HashMap();
 		String email = map.get("EMAIL").toString();
 		if(email == null) throw new NullPointerException(email);
-//		當 email字串為null我就會拋出 NullPointerException的例外,如果你要測試的話可以這樣做,這是唯一的重點
+//		當 email字串為null我就會拋出 NullPointerException的例外
 		System.out.println(email);
 		return memberapiRepository.findById(id);
 	 }
