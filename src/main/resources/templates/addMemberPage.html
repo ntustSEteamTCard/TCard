@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">用戶註冊</a>
+                <a class="navbar-brand" href="index">用戶註冊</a>
             </div>
          </nav>
             <div id="page-wrapper">
@@ -60,15 +60,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" id="addMemberForm" method="post" enctype="multipart/form-data" th:action="@{/doAddMemberPage}" th:object="${memberAccountJPA}">
                                         <div class="form-group">
                                             <label>註冊學號</label>
-                                            <input class="form-control" placeholder="一個學號只能註冊一個帳號"/>
+                                            <input class="form-control" th:field="*{email}"  placeholder="一個學號只能註冊一個帳號"/>
                                             <p class="help-block">這邊可以放些提示的訊息(驗證錯誤等).</p>
                                         </div>
                                         <div class="form-group">
                                             <label>用戶密碼</label>
-                                            <input class="form-control" type="password" placeholder="密碼長度限制6個字以上10個字以內"/>
+                                            <input class="form-control" th:field="*{password}" type="password" placeholder="密碼長度限制6個字以上10個字以內"/>
                                         </div>
                                              
         

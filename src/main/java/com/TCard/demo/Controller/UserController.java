@@ -13,7 +13,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	 @GetMapping("/12")
+	 @GetMapping("/index")
 		public String index(Map<String, Object> model) {
 		 	model.put("ID", userService.getUserId());
 			return "index";

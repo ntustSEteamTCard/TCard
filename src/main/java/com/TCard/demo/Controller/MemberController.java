@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
+//import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TCard.demo.Dao.MemberApiRepository;
 import com.TCard.demo.Dao.MemberRepository;
 import com.TCard.demo.Model.MemberAccount;
 import com.TCard.demo.Model.MemberAccountJPA;
@@ -59,21 +60,38 @@ public class MemberController {
 	@Autowired
 	MemberRepository memberRepository;
 	
-	@Autowired
-	DataSource dataSource;
+	@Autowired(required=true)
+	MemberApiRepository memberapiRepository;
+	
+//	@Autowired
+//	DataSource dataSource;
 	 
-
+	
 	@GetMapping("/addMemberPage")
-    public String addMemberPage(){
-
-		List<MemberAccountJPA> memberAccountJPA= new ArrayList<MemberAccountJPA>();
-		memberAccountJPA = memberRepository.findAll();
-
-		for(int i=0;i<memberAccountJPA.size();i++){
-			System.out.println(memberAccountJPA.get(i).getId());
-		}
+    public String addMemberPage(@ModelAttribute MemberAccountJPA memberAccountJPA){
+		
         return "addMemberPage";
     }
+	
+
+	@PostMapping("/doAddMemberPage")
+    public String doAddMemberPage(@ModelAttribute MemberAccount memberAccountJPA){
+
+//		List<MemberAccountJPA> memberAccountJPA= new ArrayList<MemberAccountJPA>();
+//		memberAccountJPA = memberRepository.findAll();
+//
+//		for(int i=0;i<memberAccountJPA.size();i++){
+//			System.out.println(memberAccountJPA.get(i).getId());
+//		}
+
+//		memberapiRepository.save(memberAccountJPA);
+		System.out.println(memberAccountJPA.getEmail());
+//		System.out.println(memberAccountJPA.getEmail());
+        return "login";
+    }
+	
+	
+	
 	
 	
 	@GetMapping("/login")
@@ -108,7 +126,7 @@ public class MemberController {
 		memberAccountJPAList = memberRepository.findAll();
 		model.addAttribute("memberAccountList", memberAccountJPAList);
         return "member/memberListPage";
-    }   
+    }
 	
 	@GetMapping("/chat")
 	public String chat(){

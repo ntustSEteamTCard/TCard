@@ -69,8 +69,8 @@ public class MemberAccount{
   private String cellphone;
   private String password;
   private String address;
-  public MemberAccount() {
-  }
+//  public MemberAccount() {
+//  }
 
 public long getId() {
 	return id;
