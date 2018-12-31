@@ -96,7 +96,7 @@ public class MemberController {
 			return "login";
 		}
 		else{
-			session.setAttribute("uid", memberAccount);
+//			session.setAttribute("uid", memberAccount);
 	        return "welcome";
 		}
 
@@ -104,8 +104,9 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
     public String memberListPage(Model model){
-//		memberAccountList = memberRepository.findAll();
-//		model.addAttribute("memberAccountList", memberAccountList);
+		List<MemberAccountJPA> memberAccountJPAList = new ArrayList<MemberAccountJPA>();
+		memberAccountJPAList = memberRepository.findAll();
+		model.addAttribute("memberAccountList", memberAccountJPAList);
         return "member/memberListPage";
     }   
 	
