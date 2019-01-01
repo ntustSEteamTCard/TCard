@@ -60,7 +60,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" id="addMemberForm" method="post" enctype="multipart/form-data" th:action="@{/doAddMemberPage}" th:object="${memberAccountJPA}">
+                                    <form role="form" id="addMemberForm" method="post" enctype="multipart/form-data" th:action="@{/doAddMemberPage}" th:object="${memberAccount}">
                                         <div class="form-group">
                                             <label>註冊學號</label>
                                             <input class="form-control" th:field="*{email}"  placeholder="一個學號只能註冊一個帳號"/>
@@ -72,7 +72,7 @@
                                         </div>
                                              
         
-                                        <button type="submit" class="btn btn-primary">註冊送出</button>
+                                        <button type="submit"  class="btn btn-primary">註冊送出</button>
                                         <button type="reset" class="btn btn-default">清除表單</button>                                        
                 						<a class="nav-link" href="/login">用戶登錄</a>
                                     </form>

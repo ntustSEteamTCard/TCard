@@ -1,4 +1,5 @@
 package com.TCard.demo.Model;
+import javax.persistence.Column;
 //
 //import org.springframework.stereotype.Component;
 //
@@ -61,17 +62,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "memberaccountjpa")//在此改变要操作的表
 public class MemberAccount{
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-//  @GeneratedValue(strategy=GenerationType.AUTO)
-  private long id;
-  private String email;
-  private String cellphone;
-  private String password;
-  private String address;
-//  public MemberAccount() {
-//  }
-
+	  @Id
+	  @GeneratedValue(strategy=GenerationType.IDENTITY)
+	  private long id;
+	  @Column(name="EMAIL")
+	  private String email;
+	  @Column(name="CELLPHONE")
+	  private String cellphone;
+	  @Column(name="PASSWORD")
+	  private String password;
+	  @Column(name="ADDRESS")
+	  private String address;
+	  
+	  
 public long getId() {
 	return id;
   }

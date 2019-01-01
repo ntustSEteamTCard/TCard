@@ -20,5 +20,5 @@ public class ExceptionHandlerAdvice {//全局应用
 	@ModelAttribute
 	public void addAttribute(Model md){
 		md.addAttribute("message","哪里出错啦~");
-	}	
+	}
 }
