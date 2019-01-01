@@ -42,7 +42,7 @@
                         <h3 class="panel-title">請輸入登入學號及密碼</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" id="loginForm" method="post" enctype="multipart/form-data" th:action="@{/doLogin}" th:object="${memberAccountJPA}">
+                        <form role="form" id="loginForm" method="post" enctype="multipart/form-data" th:action="@{/doLogin}" th:object="${memberAccount}">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Student ID" id="email" th:field="*{email}" type="email" autofocus=""/>
