@@ -11,7 +11,7 @@ import com.TCard.demo.Model.MemberAccount;
 public interface MemberApiRepository  extends JpaRepository<MemberAccount, Long>{
 	List<MemberAccount> findAll();
 	List<MemberAccount> findByEmail(String email);
-	@Query(value="select id,email,password,address,cellphone from member.memberaccountjpa where EMAIL = ?1 and PASSWORD = ?2 " ,nativeQuery = true)
+	@Query(value="select * from member.memberaccountjpa where EMAIL = ?1 and PASSWORD = ?2 " ,nativeQuery = true)
 	List<MemberAccount> findCheckMemberAccount(String email,String password);
 
 	//MemberAccount findByIdStartsWith(String id);

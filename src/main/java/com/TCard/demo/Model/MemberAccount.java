@@ -73,6 +73,8 @@ public class MemberAccount{
 	  private String password;
 	  @Column(name="ADDRESS")
 	  private String address;
+	  @Column(name="NAME")
+	  private String name;
 	  
 	  
 public long getId() {
@@ -112,6 +114,13 @@ public long getId() {
   
   public void setAddress(String address) {
 	this.address = address;
+  }
+  public String getName() {
+	return name;
+  }
+  
+  public void setName(String name) {
+	this.name = name;
   }
 
 

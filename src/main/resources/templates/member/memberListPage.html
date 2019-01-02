@@ -97,15 +97,17 @@
                                     <tr>
                                         <th>序號</th>
                                         <th>姓名</th>
-                                        <th>信箱</th>
+                                        <th>學號</th>
                                         <th>行動電話</th>
                                         <th>地址</th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="memberAccount:${memberAccountList}" class="odd gradeX">
                                         <td th:text="${memberAccount.id}"></td>
-                                        <td th:text="${memberAccount.email}"></td>
+                                
+                                        <td th:text="${memberAccount.name}"></td>
                                         <td th:text="${memberAccount.email}"></td>
                                         <td th:text="${memberAccount.cellphone}"></td>
                                         <td th:text="${memberAccount.address}"></td>

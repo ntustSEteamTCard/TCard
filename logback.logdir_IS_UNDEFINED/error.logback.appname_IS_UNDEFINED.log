@@ -3793,3 +3793,8 @@ Verify the connector's configuration, identify and stop any process that's liste
 
 =======
 >>>>>>> branch 'master' of https://github.com/ntustSEteamTCard/TCard
+2019-01-02 20:05:29,334 [http-nio-1314-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper 142 - Column 'name' not found.
+2019-01-02 20:05:50,796 [http-nio-1314-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper 142 - Column 'name' not found.
+2019-01-02 20:08:56,959 [http-nio-1314-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper 142 - Unknown column 'cellphone，name' in 'field list'
+2019-01-02 20:09:21,632 [http-nio-1314-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper 142 - Unknown column 'cellphone，name' in 'field list'
+2019-01-02 20:13:05,442 [http-nio-1314-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper 142 - Column 'name' not found.
