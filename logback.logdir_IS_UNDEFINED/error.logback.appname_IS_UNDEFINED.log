@@ -3746,6 +3746,7 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [fragm
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Unknown Source)
+<<<<<<< HEAD
 2019-01-01 20:21:51,704 [main] ERROR o.apache.catalina.util.LifecycleBase 175 - Failed to start component [Connector[HTTP/1.1-1314]]
 org.apache.catalina.LifecycleException: Protocol handler start failed
 	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1001)
@@ -3790,3 +3791,5 @@ Action:
 
 Verify the connector's configuration, identify and stop any process that's listening on port 1314, or configure this application to listen on another port.
 
+=======
+>>>>>>> branch 'master' of https://github.com/ntustSEteamTCard/TCard
