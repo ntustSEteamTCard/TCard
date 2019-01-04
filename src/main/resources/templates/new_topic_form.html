@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body onload="document.f.username.focus()">
+	<nav th:replace="fragments/navbar :: navbar"></nav>
+
+	<div class="panel panel-default col-md-9 col-center-block">
+		<div class="panel-heading">
+			<h1 class="panel-title text-center">請輸入你要自定義發佈的版及貼文內容</h1>
+		</div>
+		<div class="panel-body">
+			<form role="form" id="topicForm" class="form-horizontal" name='f'
+				th:action='@{/topic/new}' th:object="${newTopic}" method="POST">
+
+
+				<div class="form-group">
+					<select id="section"
+						th:field="${newTopic.sectionId}">
+						<option value="0" disabled="disabled" selected="selected">請選擇看板</option>
+						<option th:each="section : ${sections}" th:text="${section.name}"
+							th:value="${section.id}"></option>
+					</select>
+					<p th:if="${#fields.hasErrors('sectionId')}"
+						th:errors="*{sectionId}">Select section!</p>
+				</div>
+
+
+
+				<div class="form-group">
+					<input class="form-control" th:field="*{title}" id="title"
+						name='title' type="text" /> <label for="title">請輸入此看板下的主題</label>
+					<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect
+						title!</p>
+				</div>
+
+
+
+				<div class="form-group">
+					<textarea class="form-control" th:field="*{content}"
+						id="content" name="content"></textarea>
+					<label for="content">請輸入內容</label>
+					<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Incorrect
+						content!</p>
+				</div>
+
+
+				<div class="form-group">
+					<input class="btn btn-lg btn-success btn-block" onclick="checkTopic()" type="submit" name="action" value="Submit"/>
+				</div>
+
+
+			</form>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+<script type="text/javascript">
+	$(function() {
+		checkTopic = function() {
+
+			$("#topicForm").submit();
+
+		}
+	});
+</script>
+
+</html>

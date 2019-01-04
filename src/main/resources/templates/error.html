@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html th:lang="${#locale.language}" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+<div class="container">
+
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-body" style="font-size: 15px;">
+                        這個頁面被外星人抓走啦~
+                        <p th:utext="${exception}"></p>
+                        <div><a href="/" class="btn btn-primary">回到主頁吧</a></div>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+</body>
+</html>

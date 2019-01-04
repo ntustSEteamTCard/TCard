@@ -1,113 +1,105 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html th:lang="${#locale.language}"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html th:lang="${#locale.language}" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/head :: head">
 </head>
-<body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
-    <div class="container">
-        <div th:replace="fragments/messages :: messages"></div>
+<body onload="init()">
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
-        <!-- SECTIONS -->
+    <div th:replace="fragments/messages :: messages"></div>
 
-        <div class="row">
-            <div class="col s12">
 
-                <div class="row" id="sections">
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="col s6">
-                                <h4 th:text="#{sections}">Sections</h4>
-                            </div>
-                            <div class="col s6">
-                                <a sec:authorize="hasAnyAuthority('ADMIN', 'HEAD_ADMIN')" th:href="@{/section/new}" th:text="#{new.section}"
-                                    class="right waves-effect waves-light btn"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="collapsible" data-collapsible="accordion">
-                            <li th:each="section : ${sections}">
-                                <div class="collapsible-header">
-                                    <a th:href="@{/section/} + ${section.id}" th:text="${section.name}"></a>
-                                </div>
-                                <div class="collapsible-body">
-                                    <p th:text="${section.description}"></p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<table>
+	<tbody>
+	<tr><th>
+
+	    <div class="container">
+        <div class="panel panel-info">
+
+            <a th:href="@{/section/new}" class="btn btn-info btn-lg">管理員新建版</a>
+            <div class="panel-body">
+                <table role="table" class="table table-bordered table-hover">
+
+                    <thead>
+                    <tr>
+                            <th><h4>所有版：</h4></th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-size: 20px">
+                    <tr class="default" th:each="section : ${sections}">
+                        <th>
+                            <a class="default" th:href="@{/section/} + ${section.id}"
+                               th:text="${section.name}"></a>
+                        </th>
+                        <th class="description">
+                            <p th:text="${section.description}"></p>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
 
 
-        <!-- RECENT TOPICS -->
+            <div class="panel-body" style="font-size: 20px"
+                 th:if="${topics.size() > 0}" id="recent-topics">
 
-        <div class="row" th:if="${topics.size() > 0}" id="recent-topics">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <h4 th:text="#{recent.topics}">Recent topics</h4>
-                        <div class="divider"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <div class="row" th:each="topic : ${topics}">
-                            <div class="col s12">
-                                <div class="section">
-                                    <a th:href="@{/topic/} + ${topic.id}">
-                                        <span th:text="'@' + ${topic.user.username} + ': ' + ${topic.title}"></span> <span class="right"
-                                            th:text="${topic.creationDate} ? ${#calendars.format(topic.creationDate, 'dd MMMM yyyy HH:mm')}"></span> <span class="truncate"
-                                            th:text="${topic.content}"></span>
-                                    </a>
-                                </div>
-                                <div class="divider"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="active"></th>
+                    </tr>
+                    <h4>查看近期主題</h4>
+                    </thead>
+                    <tbody>
+                    <tr th:each="topic : ${topics}">
+                        <th><a th:href="@{/topic/} + ${topic.id}"> <span
+                                th:text="'@' + ${topic.user.username} + ': ' + ${topic.title}"></span>
+                            <span class="right"
+                                  th:text="${topic.creationDate} ? ${#calendars.format(topic.creationDate, 'dd MMMM yyyy HH:mm')}"></span>
+                            <span class="truncate" th:text="${topic.content}"></span>
+                        </a></th>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
-        </div>
 
-
-        <!-- RECENT POSTS -->
-
-        <div class="row" th:if="${posts.size() > 0}" id="recent-posts">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <h4 th:text="#{recent.posts}">Recent postss</h4>
-                        <div class="divider"></div>
+            <div class="panel-body" th:if="${posts.size() > 0}"
+                 id="recent-posts">
+                <div class="modal-title">
+                    <h4>近期回復：</h4>
+                </div>
+                <div th:each="post : ${posts}">
+                    <div class="section">
+                        <a th:href="@{/topic/} + ${post.topic.id}"> <span
+                                th:text="'@' + ${post.user.username} + ' ' + #{reply.to} + ' ' + ${post.topic.title}"></span>
+                            <span class="right"
+                                  th:text="${post.creationDate} ? ${#calendars.format(post.creationDate, 'dd MMMM yyyy HH:mm')}"></span>
+                            <span class="truncate" th:text="${post.content}"></span>
+                        </a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12">
-                        <div class="row" th:each="post : ${posts}">
-                            <div class="col s12">
-                                <div class="section">
-                                    <a th:href="@{/topic/} + ${post.topic.id}">
-                                        <span th:text="'@' + ${post.user.username} + ' ' + #{reply.to} + ' ' + ${post.topic.title}"></span> <span class="right"
-                                            th:text="${post.creationDate} ? ${#calendars.format(post.creationDate, 'dd MMMM yyyy HH:mm')}"></span> <span class="truncate"
-                                            th:text="${post.content}"></span>
-                                    </a>
-                                </div>
-                                <div class="divider"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
+
+
         </div>
-
-
     </div>
-    <footer th:replace="fragments/footer :: footer"></footer>
+
+
+
+	</th>
+	<th>
+	<div style="padding-top: 40px;font-size:50px;">大家好我是廣告</div>
+	<div><img src="../TCard_demo-0.0.1-SNAPSHOT/images/1.jpg"></div>
+	</th>
+	</tr>
+	</tbody>
+</table>
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

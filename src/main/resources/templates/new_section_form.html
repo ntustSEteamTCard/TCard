@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container" style="padding-top: 10%">
+
+
+
+
+
+
+
+                <form class="form-horizontal" name='f' th:action='@{/section/new}' th:object="${newSection}" method="POST">
+                    <div class="form-group">
+                             <input th:field="*{name}" id="name" name='name' type="text"  length="50" />
+                                        <label for="name" th:text="請輸入版的名字"></label>
+                                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="red-text">Incorrect name!</p>
+                        </div>
+<div class="form-group">
+    <textarea th:field="*{description}" id="description" name='description' class="form-control" length="150"></textarea>
+                                        <label for="description" th:text="請輸入對該版的描述"></label>
+                                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="red-text">Incorrect description!</p>
+</div>
+
+
+
+
+    <input class="btn btn-default" type="submit" name="action" th:value="創建版" />
+
+
+
+
+                        </form>
+
+
+
+
+
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
